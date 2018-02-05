@@ -85,6 +85,18 @@ li {
             </div>
         </div>
         <div class="row">
+        	<div class="col-xs-8">
+        		<div style="padding-top: 100px;">
+        			<ul>
+        				<li>
+        					<button class="btn">상품관리</button>
+        					<button class="btn">카테고리 관리</button>
+        				</li>
+        			</ul>
+        		</div>
+        	</div>
+        </div>
+        <div class="row">
             <div class="col-xs-12">
                 <div class="KateDiv">
                     <ul>
