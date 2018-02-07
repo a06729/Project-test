@@ -12,6 +12,6 @@ public class Rcontroller {
 	public String ReservationPage(HttpSession session,Model model) {
 		String UserId=(String)session.getAttribute("UserId");
 		model.addAttribute("UserId",UserId);
-		return "ReservationPage";
+		return "Reservation/ReservationPage";
 	}
 }

@@ -30,7 +30,7 @@ public class LoginServiceImpl implements LoginService {
 				session.setAttribute("UserId",UserId);
 				model.addAttribute("UserId",UserId);
 				System.out.println("로그인성공");
-				return "orderPage";
+				return "Order/orderPage";
 			}else {
 				System.out.println("로그인실패");
 				model.addAttribute("loginFail",Fail);

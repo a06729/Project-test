@@ -25,7 +25,7 @@ public class OrderController {
 		String UserId=(String)session.getAttribute("UserId");
 		model.addAttribute("UserId",UserId);
 		
-		return "orderPage";
+		return "Order/orderPage";
 	}
 	
 }

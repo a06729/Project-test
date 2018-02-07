@@ -15,6 +15,21 @@ public class GoodsController {
 		String UserId=(String)session.getAttribute("UserId");
 		model.addAttribute("UserId",UserId);
 		
-		return "GoodsControl";
+		return "Goods/GoodsControl";
+	}
+	
+	@RequestMapping(value="/GoodsAddPage")
+	public String GoodsAddPage(HttpSession session,Model model) {
+		
+		String UserId=(String)session.getAttribute("UserId");
+		model.addAttribute("UserId",UserId);
+		return "Goods/GoodsAdd";
+	}
+	
+	@RequestMapping(value="/KategorieControl")
+	public String KategoriePage(HttpSession session,Model model) {
+		String UserId=(String)session.getAttribute("UserId");
+		model.addAttribute("UserId",UserId);
+		return "Goods/KategorieControl";
 	}
 }
