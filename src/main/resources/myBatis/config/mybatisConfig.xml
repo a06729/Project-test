@@ -19,6 +19,7 @@
 	<typeAliases>
 		<typeAlias alias="Dto" type="com.pknu.file.login.dto.LoginDto"/>
 		<typeAlias alias="OrderDto" type="com.pknu.file.orderFunction.dto.OrderDto"/>
+		<typeAlias alias="GoodsDto" type="com.pknu.file.GoodsFunction.dto.GoodsDto"/>
 	</typeAliases>
 
 </configuration>

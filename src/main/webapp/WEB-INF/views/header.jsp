@@ -32,6 +32,7 @@
 							<li><a href="/orderPage">주문내역</a></li>
 							<li><a href="/ReservationPage">예약내역</a></li>
 							<li><a href="/GoodsPage">상품관리</a></li>
+							<li><a href="/OMPage">결제관리</a></li>
 							<!--								<li class="dropdown"><a href="#" class="dropdown-toggle"
 									data-toggle="dropdown" role="button" aria-haspopup="true"
 									aria-expanded="false">Dropdown <span class="caret"></span></a>

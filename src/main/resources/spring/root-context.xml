@@ -35,7 +35,7 @@
 	</bean>	
 	
 	<mybatis-spring:scan base-package="com.pknu.file.login.dao"/>
-	
+	<mybatis-spring:scan base-package="com.pknu.file.GoodsFunction.dao"/>
 	<tx:annotation-driven/>
 	
 	<bean class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

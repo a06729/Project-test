@@ -68,8 +68,7 @@
 		</div>
 		<div class="row">
 			<div class="col-sm-12">
-				<table border="1"
-					style="border-left: none; border-right: none; width: 100%;">
+				<table border="1" style="border-left: none; border-right: none; width: 100%;">
 					<tr>
 						<th style="width: 6%; text-align: center;">번호</th>
 						<th style="text-align: center;">카테고리명</th>

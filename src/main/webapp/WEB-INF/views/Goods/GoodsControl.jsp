@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html lang="ko">
@@ -89,7 +90,12 @@ li {
             <table border="1" style="border-left: none; border-right:none; width: 70%;">
                 <tr>
                     <th>선택</th><th>제품</th><th>제품 설명</th><th>가격/판매량</th><th>선택</th>
-                </tr>    
+                </tr>
+         		<c:forEach var="list" items="${goodsList}">
+                <tr>
+                	<td>${list.goodNum}</td><td><img src="${list.imgPath}"></td>
+                </tr>
+                </c:forEach>   
             </table>
             </div>
         </div>

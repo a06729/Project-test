@@ -42,7 +42,7 @@
 				<p style="text-align: center; padding-top: 84px;">상품 등록</p>
 			</div>
 		</div>
-
+		<form action="/GoodsAdd" enctype="multipart/form-data" method="post">
 		<div class="row">
 			<!--컨텐츠 row시작-->
 			<div class="col-xs-4 col-md-3">
@@ -52,14 +52,14 @@
 				<table style="width: 70%">
 					<tr>
 						<td style="border-bottom: 1px solid red; padding-bottom: 10px;">
-							<input id="input_img" type="file">
+							<input id="uploadFile" name="uploadFile" type="file">
 						</td>
 					</tr>
 					<tr>
 						<td style="border-bottom: 1px solid red; padding-top: 14px">
 							<input type="checkbox" style="float: left;">
 							<p>추천상품 수동설정</p>
-							<p style="">추천상품은 4개까지 설정가능하며 수동 설정이 없을 시 누적 판매가 높은 상품이 자동적으로
+							<p>추천상품은 4개까지 설정가능하며 수동 설정이 없을 시 누적 판매가 높은 상품이 자동적으로
 								설정됩니다.</p>
 						</td>
 					</tr>
@@ -68,7 +68,7 @@
 							<input id="SaleCheck" type="checkbox" style="float: left;">
 							<p style="float: left;">할인상품으로설정</p>
 							<p style="float: right;">할인금액설정&nbsp;&nbsp;&nbsp;
-							<input id="SalePrice" type="text" style="text-align: right;" value="0" disabled="disabled"> 
+							<input id="salePrice" name="salePrice" type="text" style="text-align: right;" value="0" disabled="disabled"> 
 							<span style="float: right;">원</span>
 							</p>
 						</td>
@@ -82,7 +82,7 @@
 			<div class="col-md-9">
 				<table style="width: 70%; margin-top: 28.5px;">
 					<tr>
-						<td><select style="width: 32%;">
+						<td><select id="Kategorie" name="Kategorie" style="width: 32%;">
 								<option>예비 상품</option>
 						</select>
 							<p style="width: 67%; float: right">예비상품은 메뉴판에서 표시되지 않고,필요할때
@@ -99,25 +99,27 @@
 				<table style="width: 70%;">
 					<tr>
 						<td>
-							<p class="countryName">한</p> <input
-							type="text" style="width: 90%;" placeholder="상품명입력">
+							<p class="countryName">한</p> 
+							<input id="kgoodsName" name="kgoodsName" type="text" style="width: 90%;" placeholder="상품명입력">
 						</td>
 					</tr>
 					<tr>
 						<td>
-							<p class="countryName">중</p> <input
-							type="text" style="width: 90%;" placeholder="상품명입력">
+							<p class="countryName">중</p> 
+							<input id="cgoodsName" name="cgoodsName" type="text" style="width: 90%;" placeholder="상품명입력">
 						</td>
 					</tr>
 					<tr>
 						<td>
 							<p class="countryName">영</p> <input
+							id="egoodsName" name="egoodsName"
 							type="text" style="width: 90%;" placeholder="상품명입력">
 						</td>
 					</tr>
 					<tr>
 						<td>
 							<p class="countryName">일</p> <input
+							id="jgoodsName" name="jgoodsName"
 							type="text" style="width: 90%;" placeholder="상품명입력">
 						</td>
 					</tr>
@@ -135,7 +137,8 @@
 							<p class="countryName">한</p> 
 							
 							<textarea
-								name="textarea" maxlength="140" rows="2" cols="50"
+								id="kgoodsE" name="kgoodsE"
+								maxlength="140" rows="2" cols="50"
 								placeholder="140자까지 입력가능" style="width: 90%;"></textarea>
 							
 						</td>
@@ -145,7 +148,7 @@
 						<td>
 							<p class="countryName">중</p> 
 							
-							<textarea name="textarea" maxlength="140" rows="2" cols="50" 
+							<textarea id="cgoodsE" name="cgoodsE" maxlength="140" rows="2" cols="50" 
 							placeholder="140자까지 입력가능" style="width: 90%;"></textarea>
 							
 						</td>
@@ -155,7 +158,7 @@
 						<td>
 							<p class="countryName">영</p> 
 							
-							<textarea name="textarea" maxlength="140" rows="2" cols="50" 
+							<textarea id="egoodsE" name="egoodsE" maxlength="140" rows="2" cols="50" 
 									  placeholder="140자까지 입력가능" style="width: 90%;"></textarea>
 						
 						</td>
@@ -165,7 +168,7 @@
 						<td>
 							<p class="countryName">일</p> 
 							
-							<textarea name="textarea" maxlength="140" rows="2" cols="50" 
+							<textarea id="jgoodsE" name="jgoodsE" maxlength="140" rows="2" cols="50" 
 							placeholder="140자까지 입력가능" style="width: 90%;"></textarea>
 							
 						</td>
@@ -182,15 +185,16 @@
 				<table style="width: 70%;">
 					<tr>
 						<td>
-							<input type="text"style="float: left; text-align: right;" value="0">
+							<input id="price" name="price" type="text"style="float: left; text-align: right;" value="0">
 							<p style="width:67%;">원</p>
 						</td>
 					</tr>
 				</table>
 			</div>
 			<input type="submit"  class="btn" value="상품등록" style="float: right; margin-right: 26%;"> 
-			<input type="submit"  class="btn btn-danger" value="취소" style="float: right; margin-right: 35px;">
+			<input type="button"  class="btn btn-danger" value="취소" style="float: right; margin-right: 35px;">
 		</div>
+		</form>
 	</div>
 </body>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -199,28 +203,37 @@
 <script>
 	$("#SaleCheck").on("click",function(){
 		if($("#SaleCheck").is(":checked")){
-			$("#SalePrice").attr("disabled",false);
+			$("#salePrice").attr("disabled",false);
 		}else{
-			$("#SalePrice").attr("disabled",true);
+			$("#salePrice").attr("disabled",true);
 		}
 	});
 </script>
 
 <script type="text/javascript">
 	var sel_file;
-
+	
 	$(document).ready(function() {
-		$("#input_img").on("change", handleImgFileSelect);
+		$("#uploadFile").on("change", handleImgFileSelect);
 	});
 
 	function handleImgFileSelect(e) {
 		var files = e.target.files;
 		var filesArr = Array.prototype.slice.call(files);
-
+		var fileSize=e.target.files[0].size;
+		var maxSize=1024*1024;
+		
 		filesArr.forEach(function(f) {
 			if (!f.type.match("image.*")) {
 				alert("확장자는 이미지 확장자만 가능합니다.");
-				return;
+				$("#uploadFile").val("");
+				$("#img").attr("src","http://placehold.it/150x150");
+				return false;
+			}
+			if(fileSize>maxSize){
+				alert("파일용량 1MB을 초과했습니다.");
+				$("#uploadFile").val("");
+				$("#img").attr("src","http://placehold.it/150x150");
 			}
 
 			sel_file = f;

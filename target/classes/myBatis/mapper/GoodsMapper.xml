@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pknu.file.GoodsFunction.dao.GoodsDao">
+	<insert id="goodsAdd" parameterType="GoodsDto">
+		insert into addgoods(GOODNUM,ID,SalePrice,
+							 Kategorie,KGoodsName,CGoodsName,
+							 EGOODSNAME,JGOODSNAME,KGOODSE,
+							 CGOODSE,EGOODSE,JGOODSE,IMGNAME,PRICE,IMGPATH)
+							 values(addgood_seq.nextVal,#{id},#{salePrice},
+							 		#{Kategorie},#{kgoodsName},
+							 		#{cgoodsName},#{egoodsName},#{jgoodsName},
+							 		#{kgoodsE},#{cgoodsE},#{egoodsE},#{jgoodsE},
+							 		#{imgName},#{Price},#{imgPath})
+	</insert>
+	<select id="getGoodsInf" resultType="GoodsDto" parameterType="HashMap">
+		select * from addgoods where id=#{id}
+	</select>
+
+</mapper>
