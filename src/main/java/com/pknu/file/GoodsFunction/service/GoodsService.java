@@ -12,4 +12,8 @@ public interface GoodsService {
 
 	String getGoodsInf(HashMap<String, Object> parmMap,Model model);
 
+	String selectGoods(GoodsDto goodsDto,Model model);
+
+	void GoodsUpdate(GoodsDto goodsDto);
+
 }

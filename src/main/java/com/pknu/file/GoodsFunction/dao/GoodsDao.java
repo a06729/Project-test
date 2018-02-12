@@ -11,4 +11,8 @@ public interface GoodsDao {
 
 	List<GoodsDto> getGoodsInf(HashMap<String, Object> parmMap);
 
+	GoodsDto updateInf(GoodsDto goodsDto);
+
+	void goodsUpdate(GoodsDto goodsDto);
+
 }

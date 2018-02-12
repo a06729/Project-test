@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -35,6 +36,7 @@ public class GoodsController {
 		
 		String UserId=(String)session.getAttribute("UserId");
 		model.addAttribute("UserId",UserId);
+		
 		parmMap.put("id", UserId);
 		
 		
@@ -44,9 +46,48 @@ public class GoodsController {
 	@RequestMapping(value="/GoodsAddPage")
 	public String GoodsAddPage(HttpSession session,Model model) {
 		
-		String UserId=(String)session.getAttribute("UserId");
-		model.addAttribute("UserId",UserId);
+		UserSession(session, model);
+		
 		return "Goods/GoodsAdd";
+	}
+	
+	@RequestMapping(value="/GoodsUpdatePage",method=RequestMethod.GET)
+	public String GoodsUpdatePage(HttpSession session,Model model,
+								  GoodsDto goodsDto,@RequestParam("goodNum")int goodNum) {
+		UserSession(session, model);
+		String UserId=(String)session.getAttribute("UserId");
+		goodsDto.setId(UserId);
+		return goodsService.selectGoods(goodsDto,model);
+	}
+	
+	@RequestMapping(value="/GoodsUpdate",method=RequestMethod.POST)
+	public String GoodsUpdate(@RequestParam("uploadFile")MultipartFile uploadFile,
+			   				  GoodsDto goodsDto,HttpSession session,HttpServletRequest request,
+			   				  @RequestParam("goodNum")int goodNum) {
+		String UserId=(String)session.getAttribute("UserId");
+		String root_path=request.getSession().getServletContext().getRealPath("/");
+		String path="resources/upload/"+UserId+"/";
+		
+		System.out.println(uploadFile.getOriginalFilename());
+		if(uploadFile !=null&&!uploadFile.getOriginalFilename().isEmpty()) {
+			String fileName=uuid()+"_"+uploadFile.getOriginalFilename();
+			goodsDto.setImgName(fileName);
+			try {
+				File file=new File(root_path+path+fileName);
+				if(!file.isDirectory()) {
+					file.mkdirs();
+				}
+				System.out.println("업로드 성공");
+				uploadFile.transferTo(file);
+				goodsDto.setImgPath(path+fileName);
+			}catch (Exception e) {
+				// TODO: handle exception
+			}
+		}
+		goodsDto.setId(UserId);
+		goodsService.GoodsUpdate(goodsDto);
+		
+		return "redirect:/GoodsPage";
 	}
 	
 	@RequestMapping(value="/GoodsAdd")
@@ -79,10 +120,10 @@ public class GoodsController {
 	}
 	
 	
+	
 	@RequestMapping(value="/KategorieControl")
 	public String KategoriePage(HttpSession session,Model model) {
-		String UserId=(String)session.getAttribute("UserId");
-		model.addAttribute("UserId",UserId);
+		UserSession(session, model);
 		return "Goods/KategorieControl";
 	}
 	
@@ -90,5 +131,10 @@ public class GoodsController {
 		String uuid=UUID.randomUUID().toString().replace("-","");
 		
 		return uuid;
+	}
+	
+	public void UserSession(HttpSession session,Model model) {
+		String UserId=(String)session.getAttribute("UserId");
+		model.addAttribute("UserId",UserId); 
 	}
 }

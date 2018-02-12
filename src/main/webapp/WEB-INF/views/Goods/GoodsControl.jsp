@@ -35,6 +35,9 @@ li {
     border : 0;
     float: left;
 }
+td,th{
+	text-align: center;
+}
 
 </style>
 
@@ -93,7 +96,31 @@ li {
                 </tr>
          		<c:forEach var="list" items="${goodsList}">
                 <tr>
-                	<td>${list.goodNum}</td><td><img src="${list.imgPath}"></td>
+                	<td><input type="checkbox" value="${list.goodNum}"></td>
+                	<td><img style="width: 100px; height: 100px;" src="${list.imgPath}"></td>
+                	<td style="text-align: center;">
+	                	한국어설명:${list.kgoodsE}<br>
+	                	중국어설명:${list.cgoodsE}<br>
+	                	영어설명:${list.egoodsE}<br>
+	                	일본어설명:${list.jgoodsE}<br>
+                	</td>
+                	
+                	<td>
+                		<c:choose>
+                			<c:when test="${!empty list.price}">
+                					${list.price}원
+                			</c:when>
+                			<c:when test="${!empty list.salePrice}">
+                					${list.salePrice}원
+                			</c:when>
+                		</c:choose>
+                	</td>
+                	<td>
+                		<form action="/GoodsUpdatePage">
+                		<input type="submit" class="btn"  value="수정">
+                		<input name="goodNum" type="hidden" value="${list.goodNum}">
+                		</form>
+                	</td>
                 </tr>
                 </c:forEach>   
             </table>

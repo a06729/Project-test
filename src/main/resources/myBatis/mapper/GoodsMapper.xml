@@ -13,8 +13,36 @@
 							 		#{kgoodsE},#{cgoodsE},#{egoodsE},#{jgoodsE},
 							 		#{imgName},#{Price},#{imgPath})
 	</insert>
+	
 	<select id="getGoodsInf" resultType="GoodsDto" parameterType="HashMap">
 		select * from addgoods where id=#{id}
 	</select>
+	
+	<select id="updateInf" resultType="GoodsDto" parameterType="GoodsDto">
+		select * from addgoods where id=#{Id} and goodnum=#{goodNum} 
+	</select>
+	
+	<update id="goodsUpdate" parameterType="GoodsDto">
+		UPDATE addgoods
+			<choose>
+				<when test="imgPath == null and imgName==null">
+					set ID=#{Id},SALEPRICE=#{salePrice},
+					    KATEGORIE=#{Kategorie},KGOODSNAME=#{kgoodsName},
+					    CGOODSNAME=#{cgoodsName},EGOODSNAME=#{egoodsName},
+						JGOODSNAME=#{jgoodsName},KGOODSE=#{kgoodsE},
+					    CGOODSE=#{cgoodsE},EGOODSE=#{egoodsE},
+						JGOODSE=#{jgoodsE},PRICE=#{Price}
+				</when>
+				<when test="imgPath != null and imgName!=null ">
+					set ID=#{Id},SALEPRICE=#{salePrice},
+					    KATEGORIE=#{Kategorie},KGOODSNAME=#{kgoodsName},
+					    CGOODSNAME=#{cgoodsName},EGOODSNAME=#{egoodsName},
+					    JGOODSNAME=#{jgoodsName},KGOODSE=#{kgoodsE},
+						CGOODSE=#{cgoodsE},EGOODSE=#{egoodsE},
+						JGOODSE=#{jgoodsE},IMGNAME=#{imgName},PRICE=#{Price},IMGPATH=#{imgPath}				
+				</when>
+			</choose>
+			WHERE ID=#{Id} and goodnum=#{goodNum}
+	</update>
 
 </mapper>

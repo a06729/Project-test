@@ -21,16 +21,31 @@ public class GoodsServiceImpl implements GoodsService {
 		goodsDao.goodsAdd(goodsDto);
 		
 	}
-
+	
 	@Override
 	public String getGoodsInf(HashMap<String, Object> parmMap,Model model) {
-		Map<String, Object> resultMap=new HashMap<>();
 		List<GoodsDto> goodsInfList=goodsDao.getGoodsInf(parmMap);
 		
 		System.out.println(goodsInfList);
 		model.addAttribute("goodsList",goodsInfList);
 		return "Goods/GoodsControl";
 
+	}
+
+	@Override
+	public String selectGoods(GoodsDto goodsDto,Model model) {
+		// TODO Auto-generated method stub
+		GoodsDto goodsInf=goodsDao.updateInf(goodsDto);
+		System.out.println(goodsInf);
+		model.addAttribute("goodsInf", goodsInf);
+		return "Goods/GoodsUpdate";
+	}
+
+	@Override
+	public void GoodsUpdate(GoodsDto goodsDto) {
+		// TODO Auto-generated method stub
+		System.out.println(goodsDto);
+		goodsDao.goodsUpdate(goodsDto);
 	}
 		
 }
