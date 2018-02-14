@@ -44,5 +44,20 @@
 			</choose>
 			WHERE ID=#{Id} and goodnum=#{goodNum}
 	</update>
+	
+	
+	<select id="selectPaging" parameterType="PagingDto" resultType="GoodsDto">
+        SELECT *
+        FROM (  SELECT ROWNUM RNUM, P.*
+                FROM (    SELECT *
+                        FROM addgoods
+                        ORDER BY REGDATE DESC ) P )
+        WHERE RNUM BETWEEN #{start} AND #{last}
+    </select>
+	
+	<select id="selectTotalPaging" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM addgoods
+    </select>
 
 </mapper>

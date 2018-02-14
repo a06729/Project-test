@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.pknu.file.GoodsFunction.dto.GoodsDto;
+import com.pknu.file.GoodsFunction.dto.PagingDto;
 
 public interface GoodsDao {
 
@@ -14,5 +15,9 @@ public interface GoodsDao {
 	GoodsDto updateInf(GoodsDto goodsDto);
 
 	void goodsUpdate(GoodsDto goodsDto);
+
+	List<GoodsDto> selectPaging(PagingDto paging);
+
+	int selectTotalPaging();
 
 }

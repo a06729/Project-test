@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
+import java.util.logging.Logger;
 
 import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.pknu.file.GoodsFunction.dto.GoodsDto;
+import com.pknu.file.GoodsFunction.dto.PagingDto;
 import com.pknu.file.GoodsFunction.service.GoodsService;
 import com.pknu.file.login.service.LoginService;
 
@@ -29,6 +31,16 @@ import com.pknu.file.login.service.LoginService;
 public class GoodsController {
 	@Autowired
 	GoodsService goodsService;
+	
+	@RequestMapping(value="/paging",method= {RequestMethod.POST,RequestMethod.GET})
+	public String paging(Model model,PagingDto paging) {
+		
+		List<GoodsDto> lists=goodsService.selectPaging(paging);
+		paging.setTotal(goodsService.selectTotalPaging());
+		model.addAttribute("lists",lists);
+		model.addAttribute("p",paging);
+		return "paging";
+	}
 	
 	@RequestMapping(value="/GoodsPage")
 	public String GoodsPage(HttpSession session,Model model){

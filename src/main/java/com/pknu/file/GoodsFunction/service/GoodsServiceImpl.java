@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 
 import com.pknu.file.GoodsFunction.dao.GoodsDao;
 import com.pknu.file.GoodsFunction.dto.GoodsDto;
+import com.pknu.file.GoodsFunction.dto.PagingDto;
 
 @Service
 public class GoodsServiceImpl implements GoodsService {
@@ -22,6 +23,25 @@ public class GoodsServiceImpl implements GoodsService {
 		
 	}
 	
+	
+	
+	@Override
+	public List<GoodsDto> selectPaging(PagingDto paging) {
+
+		return goodsDao.selectPaging(paging);
+	}
+	
+
+
+
+	@Override
+	public int selectTotalPaging() {
+		
+		return goodsDao.selectTotalPaging();
+	}
+
+
+
 	@Override
 	public String getGoodsInf(HashMap<String, Object> parmMap,Model model) {
 		List<GoodsDto> goodsInfList=goodsDao.getGoodsInf(parmMap);
