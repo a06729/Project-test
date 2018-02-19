@@ -24,14 +24,10 @@ public class GoodsServiceImpl implements GoodsService {
 	}
 	
 	
-	
 	@Override
-	public List<GoodsDto> selectPaging(PagingDto paging) {
-
-		return goodsDao.selectPaging(paging);
+	public List<GoodsDto> selectPaging(Map<String, Object> paramMap) {
+		return goodsDao.selectPaging(paramMap);
 	}
-	
-
 
 
 	@Override
@@ -67,5 +63,9 @@ public class GoodsServiceImpl implements GoodsService {
 		System.out.println(goodsDto);
 		goodsDao.goodsUpdate(goodsDto);
 	}
+
+
+
+
 		
 }

@@ -1,23 +1,27 @@
 package com.pknu.file.GoodsFunction.dto;
 
 public class PagingDto {
+
 	private int pageCnt; // 출력할 페이지번호 갯수
 	private int index; // 출력할 페이지번호
 	private int pageStartNum; // 출력할 페이지 시작 번호
 	private int listCnt; // 출력할 리스트 갯수
 	private int total; // 리스트 총 갯수
-
+	private int pageLastNum;
+	private boolean lastChk;
 	{
 		pageCnt = 5;
 		index = 0;
 		pageStartNum = 1;
 		listCnt = 5;
+		pageLastNum = 0;
 	}
 
-	public PagingDto() {}
+	public PagingDto() {
+	}
 
 	public int getStart() {
-		return index * listCnt + 1;
+		return index * listCnt;
 	}
 
 	public int getLast() {
@@ -25,25 +29,11 @@ public class PagingDto {
 	}
 
 	public int getPageLastNum() {
-		int remainListCnt = total - listCnt * (pageStartNum - 1);
-		int remainPageCnt = remainListCnt / listCnt;
-		if (remainListCnt % listCnt != 0) {
-			remainPageCnt++;
-		}
-		int pageLastNum = 0;
-		if (remainListCnt <= listCnt) {
-			pageLastNum = pageStartNum;
-		} else if (remainPageCnt <= pageCnt) {
-			pageLastNum = remainPageCnt + pageStartNum - 1;
-		} else {
-			pageLastNum = pageCnt + pageStartNum - 1;
-		}
 		return pageLastNum;
 	}
 
 	public boolean getLastChk() {
-		int n = (int) Math.ceil((double) total / listCnt);
-		return getPageLastNum() == n ? false : n == 0 ? false : true;
+		return lastChk;
 	}
 
 	public int getPageCnt() {
@@ -84,12 +74,34 @@ public class PagingDto {
 
 	public void setTotal(int total) {
 		this.total = total;
+		int remainListCnt = total - listCnt * (pageStartNum - 1);
+		int remainPageCnt = remainListCnt / listCnt;
+		if (remainListCnt % listCnt != 0) {
+			remainPageCnt++;
+		}
+		if (remainListCnt <= listCnt) {
+			pageLastNum = pageStartNum;
+		} else if (remainPageCnt <= pageCnt) {
+			pageLastNum = remainPageCnt + pageStartNum - 1;
+		} else {
+			pageLastNum = pageCnt + pageStartNum - 1;
+		}
+		int n = (int) Math.ceil((double) total / listCnt);
+		lastChk = getPageLastNum() == n ? false : n == 0 ? false : true;
+	}
+
+	public void setPageLastNum(int pageLastNum) {
+		this.pageLastNum = pageLastNum;
+	}
+
+	public void setLastChk(boolean lastChk) {
+		this.lastChk = lastChk;
 	}
 
 	@Override
 	public String toString() {
-		return "PagingDto [pageCnt=" + pageCnt + ", index=" + index + ", pageStartNum=" + pageStartNum + ", listCnt="
-				+ listCnt + ", total=" + total + "]";
+		return "PagingDto [pageCnt=" + pageCnt + ", index=" + index + ", pageStartNum=" + pageStartNum
+				+ ", listCnt=" + listCnt + ", total=" + total + ", pageLastNum=" + pageLastNum + ", lastChk=" + lastChk
+				+ "]";
 	}
-
 }

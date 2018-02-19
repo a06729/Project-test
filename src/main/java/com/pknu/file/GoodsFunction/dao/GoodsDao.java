@@ -2,6 +2,7 @@ package com.pknu.file.GoodsFunction.dao;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.pknu.file.GoodsFunction.dto.GoodsDto;
 import com.pknu.file.GoodsFunction.dto.PagingDto;
@@ -16,7 +17,7 @@ public interface GoodsDao {
 
 	void goodsUpdate(GoodsDto goodsDto);
 
-	List<GoodsDto> selectPaging(PagingDto paging);
+	List<GoodsDto> selectPaging(Map<String, Object> paramMap);
 
 	int selectTotalPaging();
 

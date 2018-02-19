@@ -46,13 +46,13 @@
 	</update>
 	
 	
-	<select id="selectPaging" parameterType="PagingDto" resultType="GoodsDto">
+	<select id="selectPaging" parameterType="HashMap" resultType="GoodsDto">
         SELECT *
         FROM (  SELECT ROWNUM RNUM, P.*
                 FROM (    SELECT *
                         FROM addgoods
-                        ORDER BY REGDATE DESC ) P )
-        WHERE RNUM BETWEEN #{start} AND #{last}
+                        ORDER BY GOODNUM DESC ) P )
+        WHERE RNUM BETWEEN #{p.start} AND #{p.last}
     </select>
 	
 	<select id="selectTotalPaging" resultType="java.lang.Integer">

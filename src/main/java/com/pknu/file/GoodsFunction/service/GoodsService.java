@@ -2,6 +2,7 @@ package com.pknu.file.GoodsFunction.service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.ui.Model;
 
@@ -18,7 +19,7 @@ public interface GoodsService {
 
 	void GoodsUpdate(GoodsDto goodsDto);
 
-	List<GoodsDto> selectPaging(PagingDto paging);
+	List<GoodsDto> selectPaging(Map<String, Object> paramMap);
 
 	int selectTotalPaging();
 

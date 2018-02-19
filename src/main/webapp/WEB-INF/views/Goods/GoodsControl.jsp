@@ -122,13 +122,40 @@ td,th{
                 		</form>
                 	</td>
                 </tr>
-                </c:forEach>   
+                </c:forEach> 
             </table>
+            <jsp:include page="/WEB-INF/views/paging.jsp" />
             </div>
         </div>
     </div>
 </body>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-
+<script type="text/javascript">
+$(function(){
+    // 3.페이징 처리할 ajax셋팅
+    paging.ajax = ajaxList;
+    ajaxList();
+});
+ 
+var ajaxList = function(){    
+    var submitData = {};
+    // 1.페이징시 필요 데이터 셋팅
+    submitData.index = paging.p.index;
+    submitData.pageStartNum = paging.p.pageStartNum;
+    $.ajax({
+        url: '/paging',
+        type: 'post',
+        data:{
+        index:paging.p.index,
+        pageStartNum:paging.p.pageStartNum
+        },
+        success : function(obj){
+            // 2.페이징정보와 화면 ui셋팅
+            paging.p = obj.p;
+            paging.create();
+        }
+    });    
+}
+</script>
 </html>
