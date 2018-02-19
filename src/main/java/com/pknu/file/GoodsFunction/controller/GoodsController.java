@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.pknu.file.GoodsFunction.dto.GoodsDto;
 import com.pknu.file.GoodsFunction.dto.PagingDto;
 import com.pknu.file.GoodsFunction.service.GoodsService;
+import com.pknu.file.login.dto.LoginDto;
 
 
 @Controller
@@ -30,12 +31,16 @@ public class GoodsController {
 	
 	@RequestMapping(value="/paging",method= {RequestMethod.POST,RequestMethod.GET})
 	@ResponseBody
-	public Map<String,Object> paging(@RequestParam(value="index")int index,int pageStartNum) {
+	public Map<String,Object> paging(@RequestParam(value="index")int index,int pageStartNum,
+									 HttpSession session) {
 		Map<String,Object> resultMap=new HashMap<>();
 		Map<String,Object> paramMap=new HashMap<>();
 		
-		System.out.println("index값:"+index);
-		System.out.println("pageStartNum값:"+pageStartNum);
+		LoginDto User=new LoginDto();
+		String UserId=(String)session.getAttribute("UserId");
+		User.setId(UserId);
+		
+		paramMap.put("Id", User);
 		
 		PagingDto paging=new PagingDto();
 		paging.setIndex(index);
@@ -44,9 +49,12 @@ public class GoodsController {
 		paramMap.put("p", paging);
 		
 		List<GoodsDto>GoodsList=goodsService.selectPaging(paramMap);
+		paging.setTotal(goodsService.selectTotalPaging(paramMap));
 		
 		resultMap.put("list", GoodsList);
 		resultMap.put("p", paging);
+		
+		System.out.println("resultMap:"+resultMap);
 		
 		return resultMap;
 	}

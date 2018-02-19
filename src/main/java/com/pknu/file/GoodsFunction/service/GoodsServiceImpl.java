@@ -31,9 +31,9 @@ public class GoodsServiceImpl implements GoodsService {
 
 
 	@Override
-	public int selectTotalPaging() {
+	public int selectTotalPaging(Map<String, Object> paramMap) {
 		
-		return goodsDao.selectTotalPaging();
+		return goodsDao.selectTotalPaging(paramMap);
 	}
 
 

@@ -49,15 +49,17 @@
 	<select id="selectPaging" parameterType="HashMap" resultType="GoodsDto">
         SELECT *
         FROM (  SELECT ROWNUM RNUM, P.*
-                FROM (    SELECT *
+                FROM (  SELECT *
                         FROM addgoods
+                        WHERE Id = #{Id.Id}
                         ORDER BY GOODNUM DESC ) P )
         WHERE RNUM BETWEEN #{p.start} AND #{p.last}
     </select>
 	
-	<select id="selectTotalPaging" resultType="java.lang.Integer">
+	<select id="selectTotalPaging" parameterType="HashMap" resultType="java.lang.Integer">
         SELECT COUNT(*)
         FROM addgoods
+        where id=#{Id.Id}
     </select>
 
 </mapper>

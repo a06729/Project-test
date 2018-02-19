@@ -21,6 +21,6 @@ public interface GoodsService {
 
 	List<GoodsDto> selectPaging(Map<String, Object> paramMap);
 
-	int selectTotalPaging();
+	int selectTotalPaging(Map<String, Object> paramMap);
 
 }
