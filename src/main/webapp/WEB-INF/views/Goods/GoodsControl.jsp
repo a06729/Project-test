@@ -39,6 +39,17 @@ td,th{
 	text-align: center;
 }
 
+#itemTable{
+	border-left: none; 
+	border-right:none; 
+	width: 70%;
+}
+
+#GoodsImg{
+	width: 100px; 
+	height: 100px;	
+}
+
 </style>
 
 <body>
@@ -90,40 +101,7 @@ td,th{
         </div>
         <div class="row">
             <div class="col-sm-12">
-            <table border="1" style="border-left: none; border-right:none; width: 70%;">
-                <tr>
-                    <th>선택</th><th>제품</th><th>제품 설명</th><th>가격/판매량</th><th>선택</th>
-                </tr>
-         		<c:forEach var="list" items="${goodsList}">
-                <tr>
-                	<td><input type="checkbox" value="${list.goodNum}"></td>
-                	<td><img style="width: 100px; height: 100px;" src="${list.imgPath}"></td>
-                	<td style="text-align: center;">
-	                	한국어설명:${list.kgoodsE}<br>
-	                	중국어설명:${list.cgoodsE}<br>
-	                	영어설명:${list.egoodsE}<br>
-	                	일본어설명:${list.jgoodsE}<br>
-                	</td>
-                	
-                	<td>
-                		<c:choose>
-                			<c:when test="${!empty list.price}">
-                					${list.price}원
-                			</c:when>
-                			<c:when test="${!empty list.salePrice}">
-                					${list.salePrice}원
-                			</c:when>
-                		</c:choose>
-                	</td>
-                	<td>
-                		<form action="/GoodsUpdatePage">
-                		<input type="submit" class="btn"  value="수정">
-                		<input name="goodNum" type="hidden" value="${list.goodNum}">
-                		</form>
-                	</td>
-                </tr>
-                </c:forEach> 
-            </table>
+			<div id="table"></div>
             <%@include file="../paging.jsp" %>
             </div>
         </div>
@@ -154,26 +132,25 @@ var ajaxList = function(){
             // 2.페이징정보와 화면 ui셋팅
             $("#table").empty(str);
             var str='';
-            $.each(obj.list,function(index,Goods){
+     		str +="<table id='itemTable' border='1' style='border-left: none; border-right:none; width: 70%;'>";
+        	str +="<tr>";
+        	str +="<th>선택</th><th>제품</th><th>제품 설명</th><th>가격/판매량</th><th>선택</th>";
+     		str +="</tr>";
+     		$.each(obj.list,function(index,Goods){
             	console.log(Goods);
-         		str +="<table border='1' style='border-left: none; border-right:none; width: 70%;'>";
-            	str +="<tr>";
-            	str +="<th>선택</th><th>제품</th><th>제품 설명</th><th>가격/판매량</th><th>선택</th>";
-         		str +="</tr>";
             	str +="<tr>";
          		str +="<td><input type='checkbox' value='"+ Goods.goodNum +"'></td>";
-            	str +="<td><img style='width: 100px; height: 100px;' src='"+ Goods.imgPath +"'></td>";
+            	str +="<td><img id='GoodsImg' style='width: 100px; height: 100px;' src='"+ Goods.imgPath +"'></td>";
             	str +="<td style='text-align: center;'>한국어설명:"+ Goods.kgoodsE +"<br>중국어설명:"+ Goods.cgoodsE +"<br>영어설명:"+ Goods.egoodsE +"<br>일본어설명:"+ Goods.jgoodsE +"<br></td>";
             	if(Goods.salePrice==null){
-            		str +="<td>"+ Goods.price +"원</td>";
+            		str +="<td>가격:"+ Goods.price +"원</td>";
             	}else if(Goods.salePrice!=null){
-            		str +="<td>"+ Goods.salePrice +"원</td>";
+            		str +="<td>할인가격:"+ Goods.salePrice +"원</td>";
             	}
-            	str +="<td><form action='/GoodsUpdatePage'><input type='submit' class='btn'  value='수정'><input name='goodNum' type='hidden' value='"+ Goods.goodNum +"'></form></td>"
+            	str +="<td><form action='/GoodsUpdatePage'><input type='submit' class='btn'  value='수정'><input name='goodNum' type='hidden' value='"+ Goods.goodNum +"'></form></td>";
             	str +="</tr>";
-            	str +="</table>";
             });
-            
+        	str +="</table>";
             $("#table").append(str);
             paging.p = obj.p;
             paging.create();
