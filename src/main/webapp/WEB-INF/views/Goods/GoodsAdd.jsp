@@ -14,25 +14,52 @@
 
     <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-    <style>
-        ul {
-            list-style: none;
-        }
-        
-        .menuName{
-        	background-color: #6f6a70; 
-        	color: white; 
-        	text-align: center; 
-        	width: 100%;
-        }
-        
-        .countryName{
-        	float: left; 
-        	margin-right: 10px;
-        }
-        
-    </style>
-    
+<style>
+ul {
+	list-style: none;
+}
+
+.menuName {
+	background-color: #6f6a70;
+	color: white;
+	text-align: center;
+	width: 100%;
+}
+
+.countryName {
+	float: left;
+	margin-right: 10px;
+}
+
+.btn.btnEdit {
+	color: white;
+	background-color: #00a6d5;
+	transition: 0.2s linear;
+}
+
+.btn.btnEdit:hover {
+	font-weight: bold;
+	color: white;
+	background-color: #008db5;
+}
+
+.btn.btnCancel{
+	border:solid 1px;
+	color: #00a6d5;
+	background-color: white;
+	solid:#00a6d5;
+	transition: 0.2s linear;
+}
+
+.btn.btnCancel:hover{
+	font-weight:bold;
+	color: #00a6d5;
+	solid:#00a6d5;
+	background-color: white;
+}
+
+</style>
+
 </head>
 <body>
 	<div class="container">
@@ -191,8 +218,8 @@
 					</tr>
 				</table>
 			</div>
-			<input type="submit"  class="btn" value="상품등록" style="float: right; margin-right: 26%;"> 
-			<input type="button"  class="btn btn-danger" value="취소" style="float: right; margin-right: 35px;">
+			<input type="submit"  class="btn btnEdit" value="상품등록" style="float: right; margin-right: 26%;"> 
+			<input type="button"  class="btn btnCancel" value="취소" style="float: right; margin-right: 35px;">
 		</div>
 		</form>
 	</div>

@@ -50,6 +50,18 @@ td,th{
 	height: 100px;	
 }
 
+.btn.btnEdit{
+		color:white;
+		background-color:#00a6d5;		
+		transition: 0.2s linear;	
+}
+
+.btn.btnEdit:hover{
+		font-weight:bold;
+		color:white;
+		background-color:#008db5;
+}
+
 </style>
 
 <body>
@@ -61,12 +73,12 @@ td,th{
         			<ul>
         				<li>
               				<form action="/GoodsPage">
-              				<button class="btn" style="margin-right: 10px;">상품관리</button>
+              				<button class="btn btnEdit" style="margin-right: 10px;">상품관리</button>
         					</form>
         				</li>
 						<li>
         					<form action="/KategorieControl">
-        					<button class="btn">카테고리 관리</button>
+        					<button class="btn btnEdit">카테고리 관리</button>
         					</form>						
 						</li>
 						
@@ -89,10 +101,10 @@ td,th{
                         </select>
                         </li>
                         <li style="float: right;">
-                            <button class="btn">카테고리 이동</button>
-                            <button class="btn  btn-danger">선택 삭제</button><br>
+                            <button class="btn btnEdit">카테고리 이동</button>
+                            <button class="btn btn-danger">선택 삭제</button><br>
                             <form action="/GoodsAddPage">
-                            <button type="submit" class="btn" style="margin-top: 7px; float: right;">상품 추가</button>
+                            <button type="submit" class="btn btnEdit" style="margin-top: 7px; float: right;">상품 추가</button>
                         	</form>
                         </li>
                     </ul>

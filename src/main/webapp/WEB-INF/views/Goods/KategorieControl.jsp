@@ -17,20 +17,31 @@
 
 
 <style>
+ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
 
-    ul {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-    }
+li {
+	list-style: none;
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
+	border: 0;
+	float: left;
+}
 
-    li {
-        list-style: none;
-        margin: 0 0 0 0;
-        padding: 0 0 0 0;
-        border: 0;
-        float: left;
-    }
+.btn.btnEdit {
+	color: white;
+	background-color: #00a6d5;
+	transition: 0.2s linear;
+}
+
+.btn.btnEdit:hover {
+	font-weight: bold;
+	color: white;
+	background-color: #008db5;
+}
 </style>
 
 </head>
@@ -43,12 +54,12 @@
 					<ul>
         				<li>
               				<form action="/GoodsPage">
-              				<button class="btn" style="margin-right: 10px;">상품관리</button>
+              				<button class="btn btnEdit" style="margin-right: 10px;">상품관리</button>
         					</form>
         				</li>
 						<li>
         					<form action="/KategorieControl">
-        					<button class="btn">카테고리 관리</button>
+        					<button class="btn btnEdit">카테고리 관리</button>
         					</form>						
 						</li>
 					</ul>
@@ -60,7 +71,7 @@
 				<div>
 					<ul>
 						<li style="float: right; margin-bottom: 11px;">
-							<button class="btn">카테고리 추가</button>
+							<button class="btn btnEdit">카테고리 추가</button>
 						</li>
 					</ul>
 				</div>
@@ -76,7 +87,7 @@
 						<th style="text-align: center;">관리</th>
 					</tr>
 				</table>
-				<input type="button" class="btn" value="변경사항 저장"
+				<input type="button" class="btn btnEdit" value="변경사항 저장"
 					style="margin-top: 27px; float: right;">
 			</div>
 		</div>

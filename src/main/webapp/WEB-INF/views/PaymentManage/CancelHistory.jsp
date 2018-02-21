@@ -13,27 +13,57 @@
 <title>취소내역</title>
 </head>
 <style>
+ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
 
-    ul {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-    }
+li {
+	list-style: none;
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
+	border: 0;
+	float: left;
+}
 
-    li {
-        list-style: none;
-        margin: 0 0 0 0;
-        padding: 0 0 0 0;
-        border: 0;
-        float: left;
-    }
-    th{
-        text-align: center;
-    }
-    table{
-        width: 100%;
-        margin-top: 55px;
-    }
+th {
+	text-align: center;
+}
+
+table {
+	width: 100%;
+	margin-top: 55px;
+}
+
+.btn.btnEdit {
+	color: white;
+	background-color: #00a6d5;
+	transition: 0.2s linear;
+}
+
+.btn.btnEdit:hover {
+	font-weight: bold;
+	color: white;
+	background-color: #008db5;
+}
+
+.btn.btnSearch{
+	border:solid 1px;
+	color: #00a6d5;
+	background-color: white;
+	solid:#00a6d5;
+	transition: 0.2s linear;
+}
+
+.btn.btnSearch:hover{
+	font-weight:bold;
+	color: #00a6d5;
+	solid:#00a6d5;
+	background-color: white;
+}
+
+
 </style>
 
 <body>
@@ -42,14 +72,14 @@
         <div class="row">
             <div class="col-sm-12">
                 <div style="padding-top: 100px;">
-                        <form>
-                            <button class="btn" style="float: left; margin-right: 10px;">주문 관리</button>
+                        <form action="/OMPage">
+                            <button class="btn btnEdit" style="float: left; margin-right: 10px;">주문 관리</button>
                         </form>
-                        <form>
-                            <button class="btn" style="float: left; margin-right: 10px;">취소 내역</button>
+                        <form action="/CancelPage">
+                            <button class="btn btnEdit" style="float: left; margin-right: 10px;">취소 내역</button>
                         </form>
-                        <form>
-                            <button class="btn" style="float: left;">정산내역</button> 
+                        <form action="/JeongsanPage">
+                            <button class="btn btnEdit" style="float: left;">정산내역</button> 
                         </form>
                 </div>
             </div>
@@ -60,7 +90,7 @@
                     <input id="firstDay" type="date" style="float: left;">
                     <p style="float: left;">~</p>
                     <input id="lastDay" type="date" style="float: left;">
-                    <input class="btn" type="button" value="검색" style="float: left; margin-left: 5px;">
+                    <input class="btn btnSearch" type="button" value="검색" style="float: left; margin-left: 5px;">
                 </div>
                 <table border="1px solid" style="width: 100%">
                         <tr>

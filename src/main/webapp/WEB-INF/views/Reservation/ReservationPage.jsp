@@ -28,6 +28,20 @@
 	padding-top: 15px;
 	margin: 0% 5% 0% 6.3%;
 }
+.btn.btnSearch{
+	border:solid 1px;
+	color: #00a6d5;
+	background-color: white;
+	solid:#00a6d5;
+	transition: 0.2s linear;
+}
+
+.btn.btnSearch:hover{
+	font-weight:bold;
+	color: #00a6d5;
+	solid:#00a6d5;
+	background-color: white;
+}
 </style>
 
 <body>
@@ -72,7 +86,7 @@
 							</tr>
 						</table>
 						<div style="padding: 0px; width: 100%">
-							<input style="display: block" class="btn pull-right"
+							<input style="display: block" class="btn btnSearch pull-right"
 								type="submit" value="검색">
 						</div>
 					</form>
